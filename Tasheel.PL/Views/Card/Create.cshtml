@@ -1,0 +1,809 @@
+﻿
+@model Tasheel.BLL.Models.CardVM
+@{
+    ViewBag.Title = "Create";
+    var studentid = ViewBag.studentid == null ? 0 : ViewBag.studentid;
+}
+
+
+<br />
+<br />
+<p class="text-danger">@TempData["Message"]</p>
+<br />
+<br />
+
+
+
+ <form asp-controller="Card" asp-action="Create">
+
+    @*  <input type="hidden" name="studentid" vlaue="@studentid" /> *@
+     <input type="hidden" asp-for="StudentId" value="@studentid">
+       <div class="row clearfix" >
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                           إضافة بطاقة اجتماعية جديدة
+                            </h2>
+
+                        </div>
+               
+                        <div class="body">
+
+                    <div class="row clearfix" >
+                                <h3 dir="rtl">البيانات الاولية:</h3>
+						        <div class="col-md-4">
+                                    <label asp-for="AcademicYearId"> العام الدراسي</label>
+
+							        <div class="input-group">
+
+                               @*  <input type="hidden" asp-for="AcademicYearId" value="1"> *@
+                                        <select class="form-control show-tick" asp-for="AcademicYearId" asp-items="(SelectList) ViewBag.academicYearList">
+                                            <option>اختر العام الدراسي</option>
+
+								        </select>
+                                        <span asp-validation-for="AcademicYearId" class="text-danger"></span>
+							        </div>
+
+						        </div>
+                                <div class="col-md-4">
+                                    <label asp-for="AcademicClass"> الصف الدراسي</label>
+                                           <div class="input-group">
+                                        <select class="form-control show-tick" asp-for="AcademicClass">
+                                            <option>الاول</option>
+                                            <option>الثاني</option>
+                                            <option>الثالث</option> 
+                                            <option>الرابع</option>
+                                            <option>الخامس</option>
+                                            <option>السادس</option>
+                                            <option>السابع</option>
+                                            <option>الثامن</option>
+                                            <option>التاسع</option> 
+                                        </select>
+                                    <div class="form-line">
+                                        <span asp-validation-for="AcademicClass" class="text-danger"></span>
+                                    </div>
+                                          </div>
+                                        </div>
+                      
+                          <div class="col-md-4">
+                            <label asp-for="Education"> التعليم</label>
+                                           <div class="input-group">
+                                <select class="form-control show-tick" asp-for="Education">
+                                            <option>اساسي</option>
+                                            <option>متوسط</option>
+                                </select>
+                                <div class="form-line">
+                                    <span asp-validation-for="Education" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                             
+                            <div class="row clearfix">
+                            <div class="col-md-4">
+                                <label asp-for="StudyPeriod">الفترة الدراسية</label>
+                                <div class="input-group">
+                                    <select class="form-control show-tick" asp-for="StudyPeriod">
+                                        <option>صباحية </option>
+                                        <option>مسائية</option>
+                                    </select>
+                                    <div class="form-line">
+                                        <span asp-validation-for="StudyPeriod" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div> 
+                    </div>
+                            <div class="row clearfix">
+                                <h3 dir="rtl">بيانات ولي الامر:</h3>
+                                    <div class="col-md-4">
+                                <label asp-for="GuardianName"> اسم ولي الامر</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">person</i>
+                                    </span>
+                                    <div class="form-line">
+                                        <input type="text" asp-for="GuardianName" class="form-control" placeholder="ادخل اسم ولي الامر">
+                                        <span asp-validation-for="GuardianName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                                    <div class="col-md-4">
+                            <label asp-for="GuardianBirthday">تاريخ ميلاد ولي الامر </label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">date_range</i>
+                                            </span>
+                                            <div class="form-line">
+                                    <input type="date" asp-for="GuardianBirthday" class="form-control date" placeholder="Ex: 30/07/2025">
+                                    <span asp-validation-for="GuardianBirthday" class="text-danger"></span>
+                                            </div>
+                                        </div>
+						</div>
+                            <div class="col-md-4">
+                                <label asp-for="GuardianGender">جنس ولي الامر</label>
+                                <div class="input-group">
+                                    <select class="form-control show-tick" asp-for="GuardianGender">
+                                        <option>ذكر </option>
+                                        <option>انثى</option>
+                                    </select>
+                                    <div class="form-line">
+                                        <span asp-validation-for="GuardianGender" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-4">
+                            <label asp-for="GuardianJob"> وظيفة ولي الامر</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons"> business_center</i>
+                                            </span>
+                                            <div class="form-line">
+                                    <input type="text" asp-for="GuardianJob" class="form-control" placeholder="ادخل وظيفة ولي الامر">
+                                    <span asp-validation-for="GuardianJob" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                        </div>
+                                <div class="col-md-4">
+                            <label asp-for="GuardianWorkPlace"> مكان العمل</label>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">apartment</i>
+                                </span>
+
+                                <div class="form-line">
+                                    <input type="text" asp-for="GuardianWorkPlace" class="form-control" placeholder="ادخل مكان العمل">
+                                    <span asp-validation-for="GuardianWorkPlace" class="text-danger"></span>
+                                </div>
+                            </div>
+						</div>  
+                                <div class="col-md-4">
+							<label asp-for="GuardianPhone"> هاتف ولي الامر</label>
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="material-icons">phone_iphone</i>
+								</span>
+								<div class="form-line">
+									<input type="number" asp-for="GuardianPhone" class="form-control" placeholder="ادخل رقم الهاتف">
+									<span asp-validation-for="GuardianPhone" class="text-danger"></span>
+								</div>
+							</div>
+						</div>
+                            </div>
+                            <div class="row clearfix">
+                        <h3 dir="rtl">البيانات الاجتماعية عن الطالب:</h3>
+                                <div class="col-md-4">
+                                   <label asp-for="FamilyCount"> عدد افراد الاسرة</label>
+                                   <div class="input-group">
+                                        <div class="form-line">
+                                    <input type="text" asp-for="FamilyCount" class="form-control" placeholder=" ادخل عدد افراد الاسرة">
+                                    <span asp-validation-for="FamilyCount" class="text-danger"></span>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                 <label asp-for="Order"> ترتيبه الاسري</label>
+                                <div class="input-group">
+                                <div class="form-line">
+                                    <input type="number" asp-for="Order" class="form-control" placeholder="ادخل الترتيب الاسري">
+                                    <span asp-validation-for="Order" class="text-danger"></span>
+                            </div>
+                            </div>
+						</div> 
+                                <div class="col-md-4">
+							<label asp-for="SiblingsCount"> عدد الاخوة</label>
+							<div class="input-group">
+								<div class="form-line">
+									<input type="text" asp-for="SiblingsCount" class="form-control" placeholder="ادخل عدد الاخوة">
+									<span asp-validation-for="SiblingsCount" class="text-danger"></span>
+								</div>
+							</div>
+						</div>
+                              </div>  
+                            <div class="row clearfix">
+                                <div class="col-md-4">
+                                    <label asp-for="StudentLiving"> معيشة الطالب</label>
+                                    <div class="input-group">
+                                        <select class="form-control show-tick" asp-for="StudentLiving">
+                                            <option>مع والديه</option>
+                                            <option>مع والدته</option>
+                                            <option>مع والده</option>
+                                            <option>مع الاقارب</option>
+                                        </select>
+                                        <div class="form-line">
+                                           <span asp-validation-for="StudentLiving" class="text-danger"></span>
+                                        </div>
+                                          </div>
+                                   </div>
+                                <div class="col-md-4">
+                                 <label asp-for="AlternativeFamily"> الاسرة البديلة</label>
+                                 <div class="input-group">
+                                    <div class="form-line">
+                                    <input type="text" asp-for="AlternativeFamily" class="form-control" placeholder="ادخل الاسرة البديلة">
+                                    <span asp-validation-for="AlternativeFamily" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+					        	<div class="col-md-4">
+							<label asp-for="TheArea">المنطقة</label>
+							<div class="input-group">
+								<div class="form-line">
+									<input type="text" asp-for="TheArea" class="form-control" placeholder="ادخل المنطقة">
+									<span asp-validation-for="TheArea" class="text-danger"></span>
+								</div>
+							</div>
+						</div>
+                            </div>
+                            <div class="row clearfix">
+						        <div class="col-md-4">
+							<label asp-for="TheStreet">الشارع</label>
+							<div class="input-group">
+								<div class="form-line">
+									<input type="text" asp-for="TheStreet" class="form-control" placeholder="ادخل الشارع">
+									<span asp-validation-for="TheStreet" class="text-danger"></span>
+								</div>
+							</div>
+						</div>
+                                <div class="col-md-4">
+                            <label asp-for="HouseNumber"> رقم المنزل</label>
+                                 <div class="input-group">
+                                    <div class="form-line">
+                                    <input type="text" asp-for="HouseNumber" class="form-control" placeholder="ادخل رقم المنزل">
+                                    <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+						        <div class="col-md-4">
+							<label asp-for="HousePhone">هاتف المنزل</label>
+							<div class="input-group">
+								<div class="form-line">
+									<input type="text" asp-for="HousePhone" class="form-control" placeholder="ادخل هاتف المنزل">
+									<span asp-validation-for="HousePhone" class="text-danger"></span>
+								</div>
+							</div>
+						</div>
+                            </div>
+                            <div class="row clearfix">
+						        <div class="col-md-4">
+                            <label asp-for="PointInterest">اقرب نقطة دالة</label>
+							<div class="input-group">
+								<div class="form-line">
+                                    <input type="text" asp-for="PointInterest" class="form-control" placeholder="ادخل اقرب نقطة دالة">
+                                    <span asp-validation-for="PointInterest" class="text-danger"></span>
+								</div>
+							</div>
+						</div>
+                                <div class="col-md-4">
+							      <label asp-for="Talents"> المواهب التي يتمتع بها الطالب</label>
+                                  <div class="input-group">
+                                    <div class="form-line">
+                                    <input type="text" asp-for="Talents" class="form-control" placeholder="المواهب">
+                                    <span asp-validation-for="Talents" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row clearfix">
+                               <h3 dir="rtl"> الحاله الصحية للطالب :</h3>
+                               <div class="col-md-6">
+                            <label asp-for="PreviousIllnesses">الامراض التي سبق الاصابه بها</label>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="text" asp-for="PreviousIllnesses" class="form-control">
+                                    <span asp-validation-for="PreviousIllnesses" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                               <div class="col-md-6">
+                            <label asp-for="DisabilityType"> نوع الاعاقه الجسميه ان وجد</label>
+                            <div class="input-group">
+                                <div class="form-line">
+                                        <input type="text" asp-for="DisabilityType" class="form-control">
+                                        <span asp-validation-for="DisabilityType" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                           
+                            <div class="row clearfix">
+                            <div class="col-md-4">
+                                <label asp-for="Sight"> النظر</label>
+                                <div class="input-group">
+                                    <select class="form-control show-tick" asp-for="Sight">
+                                        <option>ضعيف </option>
+                                        <option>عادي</option>     
+                                        <option>جيد</option>   
+                                        <option>ممتاز</option>
+                                    </select>
+                                    <div class="form-line">
+                                        <span asp-validation-for="Sight" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="Hearing">السمع</label>
+                                <div class="input-group">
+                                    <select class="form-control show-tick" asp-for="Hearing">
+                                        <option>ضعيف </option>
+                                        <option>عادي</option>
+                                        <option>جيد</option>
+                                        <option>ممتاز</option>
+                                    </select>
+                                    <div class="form-line">
+                                        <span asp-validation-for="Hearing" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+   
+                       
+                            </div>
+                            <div class="row clearfix">
+                           <p dir="rtl">في حالة وجود مرض داخلي إحضار تقرير طبي معتمد ومترجم باللغة العربية مع توصيات الطبيب</p>
+                           </div>
+                            <div class="row clearfix">
+                        <h3 dir="rtl"> الظروف الاقتصادية للطالب:</h3>
+                        <div class="col-md-4">
+                            <label asp-for="FamilyIncome"> دخل الاسرة</label>
+                            <div class="input-group">
+                                <select class="form-control show-tick" asp-for="FamilyIncome">
+                                    <option>ضعيف</option>
+                                    <option>متوسط</option>
+                                    <option>فوق المتوسط</option>
+                                </select>
+                                <div class="form-line">
+                                    <span asp-validation-for="FamilyIncome" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="TypeHousing"> نوع السكن</label>
+                            <div class="input-group">
+                                <select class="form-control show-tick" asp-for="TypeHousing">
+                                    <option>شقة</option>
+                                    <option>فيلا</option>
+                                    <option>منزل عربي</option>
+                                    <option>ايجار</option>
+                                    <option>مع الاقارب</option>         
+                                </select>
+                                <div class="form-line">
+                                    <span asp-validation-for="TypeHousing" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="col-md-4">
+                                <label asp-for="BuildingType"> نوع البناء</label>
+                                <div class="input-group">
+                                    <select class="form-control show-tick" asp-for="BuildingType">
+                                        <option>قديم</option>
+                                        <option>جديد</option>
+                                    </select>
+                                    <div class="form-line">
+                                        <span asp-validation-for="BuildingType" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                      
+                    </div>
+                            <div class="row clearfix">
+                                <h3 dir="rtl">الجانب النفسي:</h3>
+                        <div class="body table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>السلوك</th>
+                                        <th>نعم</th>
+                                        <th>لا</th>  
+                                        <th>ملاحظات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>خجل</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Shyness" class="form-control">
+                                                    <span asp-validation-for="Shyness" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Shyness" class="form-control">
+                                                    <span asp-validation-for="Shyness" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Shyness" class="form-control">
+                                                    <span asp-validation-for="Shyness" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>خوف</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Fear" class="form-control">
+                                                    <span asp-validation-for="Fear" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Fear" class="form-control">
+                                                    <span asp-validation-for="Fear" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Fear" class="form-control">
+                                                    <span asp-validation-for="Fear" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>مص الابهام</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="SuckingThumb" class="form-control">
+                                                    <span asp-validation-for="SuckingThumb" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="SuckingThumb" class="form-control">
+                                                    <span asp-validation-for="SuckingThumb" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="SuckingThumb" class="form-control">
+                                                    <span asp-validation-for="SuckingThumb" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>قضم الاظافر</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="NailBiting" class="form-control">
+                                                    <span asp-validation-for="NailBiting" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="NailBiting" class="form-control">
+                                                    <span asp-validation-for="NailBiting" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="NailBiting" class="form-control">
+                                                    <span asp-validation-for="NailBiting" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">5</th>
+                                        <td>تبول لا ارادي</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="InvolutaryUrination" class="form-control">
+                                                    <span asp-validation-for="InvolutaryUrination" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="InvolutaryUrination" class="form-control">
+                                                    <span asp-validation-for="InvolutaryUrination" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="InvolutaryUrination" class="form-control">
+                                                    <span asp-validation-for="InvolutaryUrination" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                     
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">6</th>
+                                        <td>سرحان</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Daydreaming" class="form-control">
+                                                    <span asp-validation-for="Daydreaming" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Daydreaming" class="form-control">
+                                                    <span asp-validation-for="Daydreaming" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Daydreaming" class="form-control">
+                                                    <span asp-validation-for="Daydreaming" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>  
+                                    <tr>
+                                        <th scope="row">7</th>
+                                        <td>ضعف الدافع الدراسي</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="LowACDMO" class="form-control">
+                                                    <span asp-validation-for="LowACDMO" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="LowACDMO" class="form-control">
+                                                    <span asp-validation-for="LowACDMO" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="LowACDMO" class="form-control">
+                                                    <span asp-validation-for="LowACDMO" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr> 
+                                    <tr>
+                                        <th scope="row">8</th>
+                                        <td>سلوك عدواني</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Aggressive" class="form-control">
+                                                    <span asp-validation-for="Aggressive" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Aggressive" class="form-control">
+                                                    <span asp-validation-for="Aggressive" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Aggressive" class="form-control">
+                                                    <span asp-validation-for="Aggressive" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">9</th>
+                                        <td>التأتاه</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Stuttering" class="form-control">
+                                                    <span asp-validation-for="Stuttering" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Stuttering" class="form-control">
+                                                    <span asp-validation-for="Stuttering" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Stuttering" class="form-control">
+                                                    <span asp-validation-for="Stuttering" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">10</th>
+                                        <td>فرط حركه</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="HyperActivity" class="form-control">
+                                                    <span asp-validation-for="HyperActivity" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="HyperActivity" class="form-control">
+                                                    <span asp-validation-for="HyperActivity" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="HyperActivity" class="form-control">
+                                                    <span asp-validation-for="HyperActivity" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">11</th>
+                                        <td>اخرى تذكر</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Notes" class="form-control">
+                                                    <span asp-validation-for="Notes" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Notes" class="form-control">
+                                                    <span asp-validation-for="Notes" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" asp-for="Notes" class="form-control">
+                                                    <span asp-validation-for="Notes" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                            </div>
+                           <div dir="rtl">
+                            <div class="row clearfix">
+                                <h3 dir="rtl">الملاحظات:</h3>
+                                <div class="col-md-12">
+                                    <label asp-for="AnOpinion">1. رأي ولي الامر في كيفية الاتصال به</label>
+                                    <div class="input-group">
+                                        <div class="form-line">
+                                            <input type="text" asp-for="AnOpinion" class="form-control" >
+                                            <span asp-validation-for="AnOpinion" class="text-danger"></span>
+                                        </div>
+                                    </div>
+							</div>
+                           
+				           	</div>
+                            <div class="row clearfix">
+                              <div class="col-md-12">
+                                <h5 dir ="rtl">2.ضرورة زيارة ولي الامر باستمرار للمدرسة لمتابعة تحصيل ابنه الدراسي والاطلاع على سلوكه العام ومراجعة مكتب الارشاد النفسي</h5>
+							</div>
+                        </div> 
+                            <div class="row clearfix">
+                               <div class="col-md-12">
+                                <h5 dir="rtl">3.في حالة تعذر ولي الامر عن زيارة المدرسة فمن ينوب عنه؟</h5>
+                        </div>
+
+						</div>
+					        </div>
+                            <div class="row clearfix" >
+                                <div class="col-md-4">
+                            <label asp-for="Name">اسم ينوب ولي الامر</label>
+                                    <div class="input-group">
+                                        <div class="form-line">
+                                    <input type="text" asp-for="Name" class="form-control">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                            <label asp-for="Kinship">صلة القرابة</label>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="text" asp-for="Kinship" class="form-control">
+                                    <span asp-validation-for="Kinship" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                               <div class="col-md-4">
+                            <label asp-for="Work">جهة العمل</label>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="text" asp-for="Work" class="form-control">
+                                    <span asp-validation-for="Work" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                           
+                            
+                            <div class="row clearfix">
+                        <input type="submit" value="Save" class="btn btn-success m-t-15 waves-effect" />
+                        <a asp-controller="Student" asp-action="Index" class="btn btn-danger m-t-15 waves-effect">  Return </a>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+
+
+    </div>
+            </form>
+
+@section JqueryValidation
+{
+        <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+        <script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+<script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+

@@ -1,0 +1,44 @@
+﻿@model Tasheel.BLL.Models.AcademicYearVM
+@{
+    ViewBag.Title = "Delete";
+   
+}
+
+<br />
+<br />
+<p>@TempData["Message"]</p>
+<br />
+<br />
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                     حذف الفصل الدراسي
+                </h2>
+                
+            </div>
+            <div class="body">
+                <form asp-controller="AcademicYear" asp-action="Delete">
+                      <input type="hidden" asp-for="Id" class="form-control" readonly>
+                      
+
+          <label asp-for="Year"> الفصل الدراسي</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" asp-for="Year" class="form-control" readonly>
+                            <span asp-validation-for="Year" class="text-danger"></span>
+                        </div>
+                    </div>
+                   
+                    <br>
+                    <input type="submit" value="حذف" class="btn btn-success m-t-15 waves-effect" />
+                    <a asp-controller="AcademicYear" asp-action="Index"  class="btn btn-danger m-t-15 waves-effect"> رجوع </a>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div

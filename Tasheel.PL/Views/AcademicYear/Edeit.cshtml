@@ -1,0 +1,53 @@
+﻿@model Tasheel.DAL.Entities.AcademicYear
+@{
+    ViewBag.Title = "Edeit";
+
+}
+
+<br />
+<br />
+<p>@TempData["Message"]</p>
+<br />
+<br />
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                   تعديل الفصل الدراسي
+                </h2>
+
+            </div>
+            <div class="body">
+                <form asp-controller="AcademicYear" asp-action="Edeit">
+
+                    <input type="hidden" asp-for="Id" class="form-control" readonly>
+
+
+                    <label asp-for="Year"> الفصل الدراسي </label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" asp-for="Year" class="form-control" placeholder="ادخل الفصل الدراسي">
+                            <span asp-validation-for="Year" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <br>
+                    <input type="submit" value="تعديل" class="btn btn-success m-t-15 waves-effect" />
+                    <a asp-controller="AcademicYear" asp-action="Index" class="btn btn-danger m-t-15 waves-effect"> رجوع </a>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section JqueryValidation
+{
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}
+

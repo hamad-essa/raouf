@@ -1,0 +1,220 @@
+﻿@model Tasheel.BLL.Models.StudentVM
+@{
+    ViewBag.Title = "Edeit";
+
+}
+
+
+<br />
+<br />
+<p>@TempData["Message"]</p>
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-warning text-center" role="alert">
+        @ViewBag.Message
+    </div>
+}
+<br />
+<br />
+
+
+
+<form asp-controller="Student" asp-action="Edeit">
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                       تعديل بيانات طالب
+                    </h2>
+
+                </div>
+                <div class="body">
+
+                    <div class="row clearfix">
+                        <div class="col-md-4">
+                            <label asp-for="FullName">الاسم الرباعي</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">person</i>
+                                </span>
+                                <div class="form-line">
+                                    <input type="text" asp-for="FullName" class="form-control" placeholder="ادخل الاسم الرباعي">
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="Birthday"> تاريخ الميلاد</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">date_range</i>
+                                </span>
+                                <div class="form-line">
+                                    <input type="date" asp-for="Birthday" class="form-control date" placeholder="Ex: 30/07/2025">
+                                    <span asp-validation-for="Birthday" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="NationalityId"> الجنسية</label>
+
+                            <div class="input-group">
+                                <select class="form-control show-tick" asp-for="NationalityId" asp-items="(SelectList) ViewBag.NationalityList">
+                                    <option>اختر الجنسية</option>
+
+                                </select>
+                                <span asp-validation-for="NationalityId" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="demo-radio-button">
+                                    <label asp-for="Gender"> الجنس :</label>
+                                    <br />     <br />
+                                    <input type="radio" asp-for="Gender" value="male" id="r1">
+                                    <label for="r1" class="control-label">ذكر</label>
+                                    <input type="radio" asp-for="Gender" value="female" id="r2">
+                                    <label for="r2" class="control-label">انثي</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="Religion"> الديانة</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+
+                                </span>
+                                <div class="form-line">
+                                    <input type="text" asp-for="Religion" class="form-control" placeholder="ادخل الديانة">
+                                    <span asp-validation-for="Religion" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label asp-for="Code">الرقم الوطني او جواز السفر</label>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="text" asp-for="Code" class="form-control" placeholder="ادخل الرقم الوطني او جواز السفر">
+                                    <span asp-validation-for="Code" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-md-4">
+                            <label asp-for="MotherName"> اسم الام</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">person</i>
+                                </span>
+                                <div class="form-line">
+                                    <input type="text" asp-for="MotherName" class="form-control" placeholder="ادخل اسم الام">
+                                    <span asp-validation-for="MotherName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="MotherBirthday"> تاريخ الميلاد</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">date_range</i>
+                                </span>
+                                <div class="form-line">
+                                    <input type="date" asp-for="MotherBirthday" class="form-control date" placeholder="Ex: 30/07/2025">
+                                    <span asp-validation-for="MotherBirthday" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="MotherNationality"> الجنسية</label>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="text" asp-for="MotherNationality" class="form-control" placeholder="ادخل الجنسية">
+                                    <span asp-validation-for="MotherNationality" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-md-4">
+                            <label asp-for="MotherJob">المهنة</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons"> business_center</i>
+                                </span>
+                                <div class="form-line">
+                                    <input type="text" asp-for="MotherJob" class="form-control" placeholder="ادخل المهنة">
+                                    <span asp-validation-for="MotherJob" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="MotherEducation"> المستوى التعليمي</label>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="text" asp-for="MotherEducation" class="form-control" placeholder="ادخل المستوى التعليمي">
+                                    <span asp-validation-for="MotherEducation" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="MotherPhone"> رقم الهاتف</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">phone_iphone</i>
+                                </span>
+                                <div class="form-line">
+                                    <input type="number" asp-for="MotherPhone" class="form-control" placeholder="ادخل رقم الهاتف">
+                                    <span asp-validation-for="MotherPhone" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-md-4">
+                            <label asp-for="MotherWorkPlace">مكان العمل</label>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">apartment</i>
+                                </span>
+
+                                <div class="form-line">
+                                    <input type="text" asp-for="MotherWorkPlace" class="form-control" placeholder="ادخل مكان العمل">
+                                    <span asp-validation-for="MotherWorkPlace" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row clearfix">
+                        <input type="submit" value="حفظ" class="btn btn-success m-t-15 waves-effect" />
+                        <a asp-controller="Student" asp-action="Index" class="btn btn-danger m-t-15 waves-effect"> رجوع </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+@section JqueryValidation
+{
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+<script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+

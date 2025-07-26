@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Tasheel.BLL.Models.CardVM>
+@{
+    ViewBag.Title = "Index";
+
+}
+<h5>Card page</h5>
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+
+            <div class="body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>
+                            </th>
+                            <th>
+                                <a asp-controller="Card" asp-action="Create" class="btn btn-danger">إضافة</a>
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الصف الدراسي</th>
+                                <th>التعليم</th>
+                                <th>اسم ولي الامر</th>
+                                <th>العمليات</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @{
+
+                                int Count = 0;
+
+                            }
+                            @foreach (var Item in Model)
+                            {
+                                Count++;
+                                <tr>
+                                    <th scope="row">@Count</th>
+									<td> @Item.AcademicClass</td>
+                                    <td>   @Item.Education</td>
+                                    <td> @Item.GuardianName</td>
+                               
+                                    <td>
+                                        <a asp-controller="Card" asp-action="Edeit" asp-route-Id="@Item.Id" class="btn btn-outline-danger">
+                                            <i class="material-icons">update</i>
+                                            <span>تعديل</span>
+                                        </a>
+                                        <a asp-controller="Card" asp-action="Details" asp-route-Id="@Item.Id" class="btn btn-outline-danger">
+                                            <i class="material-icons">description</i>
+                                            <span>تفاصيل</span>
+                                        </a>
+                                        <a asp-controller="Card" asp-action="Delete" asp-route-Id="@Item.Id" class="btn btn-outline-danger">
+                                            <i class="material-icons">delete</i>
+                                            <span>حذف</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>

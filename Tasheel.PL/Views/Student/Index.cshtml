@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Tasheel.BLL.Models.StudentVM>
+@{
+    ViewBag.Title = "Index";
+
+}
+<h5>صفحة الطالب</h5>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+
+            <div class="body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>
+                            </th>
+                            <th>
+                                <a asp-controller="Student" asp-action="Create" class="btn btn-danger">إضافة</a>
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+								<th>ID</th>	
+                                <th>الاسم</th>
+                                <th>الرقم الوطني او جواز السفر</th>
+                                <th>العمليات</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @{
+
+                                int Count = 0;
+
+                            }
+                            @foreach (var Item in Model)
+                            {
+                                Count++;
+                                <tr>
+                                    <th scope="row">@Count</th>
+
+                                    <td> @Item.Id</td>
+                                    <td> @Item.FullName</td>
+                                    <td>   @Item.Code</td>
+                                    <td>
+                                        <a asp-controller="Student" asp-action="Edeit" asp-route-Id="@Item.Id" class="btn btn-outline-success">
+                                            <i class="material-icons">update</i>
+                                            <span>تعديل</span>
+                                        </a>
+                                        <a asp-controller="Student" asp-action="Details" asp-route-Id="@Item.Id" class="btn btn-outline-warning">
+                                            <i class="material-icons">description</i>
+                                            <span>تفاصيل</span>
+                                        </a>
+                                        <a asp-controller="Student" asp-action="Delete" asp-route-Id="@Item.Id" class="btn btn-outline-danger">
+                                            <i class="material-icons">delete</i>
+                                            <span>حذف</span>
+                                        </a>
+                                        <a href="~/Card/Create?studentid=@Item.Id" class="btn btn-outline-info">
+                                            <i class="material-icons">create</i>
+                                            <span>اضافة بطاقة</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>
