@@ -2,7 +2,6 @@
 @model Tasheel.BLL.Models.CardVM
 @{
     ViewBag.Title = "Create";
-    var studentid = ViewBag.studentid == null ? 0 : ViewBag.studentid;
 }
 
 
@@ -15,9 +14,6 @@
 
 
  <form asp-controller="Card" asp-action="Create">
-
-    @*  <input type="hidden" name="studentid" vlaue="@studentid" /> *@
-     <input type="hidden" asp-for="StudentId" value="@studentid">
        <div class="row clearfix" >
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -32,7 +28,16 @@
 
                     <div class="row clearfix" >
                                 <h3 dir="rtl">البيانات الاولية:</h3>
-						        <div class="col-md-4">
+                                <div class="col-md-4">
+                                    <label asp-for="StudentId"> الطالب</label>
+                                    <div class="input-group">
+                                        <select class="form-control show-tick" asp-for="StudentId" asp-items="(SelectList)ViewBag.StudentList">
+                                            <option>اختر الطالب</option>
+                                        </select>
+                                        <span asp-validation-for="StudentId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                                        <div class="col-md-4">
                                     <label asp-for="AcademicYearId"> العام الدراسي</label>
 
 							        <div class="input-group">

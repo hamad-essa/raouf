@@ -8,22 +8,24 @@ using Tasheel.DAL.Entities;
 
 namespace Tasheel.PL.Controllers
 {
+    [Authorize(Roles = "Admin,Parent")]
     public class CardController : Controller
     {
         private readonly ICard card;
         private readonly Iacademicyear academicyear;
+        private readonly IStudent student;
         //نعطي علم اني بنستخد اوتو مابر
         private readonly IMapper mapper;
 
         //تكوين كائن
-        public CardController(ICard CC, IMapper mapper, Iacademicyear AA)
+        public CardController(ICard CC, IMapper mapper, Iacademicyear AA, IStudent SS)
         {
             this.card = CC;
             this.mapper = mapper;
             this.academicyear = AA;
+            this.student = SS;
         }
 
-        [Authorize(Roles ="admin")]
         public async Task<IActionResult> Index()
         {
 
@@ -70,14 +72,17 @@ namespace Tasheel.PL.Controllers
 
             }
         }
-            [HttpGet]
-        public async Task<IActionResult> Create(int studentId)
+        [HttpGet]
+        public async Task<IActionResult> Create(int? studentId)
         {
             var data = await academicyear.GetAllAsync();
             var result = mapper.Map<IEnumerable<AcademicYearVM>>(data);
 
             ViewBag.academicyearList = new SelectList(result, "Id", "Year");
-            ViewBag.studentid = studentId;
+
+            var students = await student.GetAsync();
+            ViewBag.StudentList = new SelectList(students, "Id", "FullName", studentId);
+
             return View();
         }
         [HttpPost]
