@@ -26,8 +26,6 @@ namespace Tasheel.BLL.Models
         public string ConfirmPassword { get; set; }
         public bool IsAgree { get; set; }
 
-        public string role { get; set; }
-
 
     }
 }

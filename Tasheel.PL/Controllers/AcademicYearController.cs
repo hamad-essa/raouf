@@ -11,6 +11,7 @@ namespace Tasheel.PL.Controllers
 {
     
 
+    [Authorize(Roles = "Admin")]
     public class AcademicYearController : Controller
     {
         private readonly Iacademicyear academicyear;
@@ -23,7 +24,6 @@ namespace Tasheel.PL.Controllers
             this .mapper = mapper;
 
         }
-        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Index()
         {
             var data = await academicyear.GetAllAsync();

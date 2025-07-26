@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Tasheel.BLL.Models;
 using Tasheel.DAL.Extend;
@@ -13,12 +12,10 @@ namespace Tasheel.PL.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
         }
         //public IActionResult Registration()
         //{
@@ -38,8 +35,6 @@ namespace Tasheel.PL.Controllers
         [Microsoft.AspNetCore.Authorization.AllowAnonymous] // Allow anonymous access to the registration page
         public IActionResult Register()
         {
-            ViewBag.role = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
-
             return View();
         }
 
@@ -56,8 +51,8 @@ namespace Tasheel.PL.Controllers
 
                 if (result.Succeeded)
                 {
-                    // ✅ Assign a role after user creation
-                    await _userManager.AddToRoleAsync(user, model.role); // Change to your desired role
+                    // Assign default role "Parent" after user creation
+                    await _userManager.AddToRoleAsync(user, "Parent");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");

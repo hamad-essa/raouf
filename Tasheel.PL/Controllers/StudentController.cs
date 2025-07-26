@@ -13,7 +13,7 @@ using String = System.String;
 
 namespace Tasheel.PL.Controllers
 {
-    //[Authorize]
+    [Authorize(Roles = "Admin,Parent")]
     public class StudentController : Controller
 
     {

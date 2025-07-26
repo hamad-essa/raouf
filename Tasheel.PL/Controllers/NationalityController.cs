@@ -8,7 +8,7 @@ using Tasheel.DAL.Entities;
 
 namespace Tasheel.PL.Controllers
 {
-    //[Authorize]
+    [Authorize(Roles = "Admin")]
     public class NationalityController : Controller
     {
         private readonly Inationality nationality;
@@ -20,7 +20,6 @@ namespace Tasheel.PL.Controllers
             this.nationality = NA;
             this.mapper = mapper;
         }
-        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Index()
         {
             var data = await nationality.GetAllAsync();

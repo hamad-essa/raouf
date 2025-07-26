@@ -105,6 +105,7 @@
                     </li>
                     
                  
+@if (User.IsInRole("Admin")) {
                     <li class="active">
                         <a asp-controller="Nationality" asp-action="Index">
                             <i class="material-icons">badge</i>
@@ -119,6 +120,14 @@
                         </a>
                     </li>
                     <li class="active">
+                        <a asp-controller="Account" asp-action="Register">
+                            <i class="material-icons">edit_square</i>
+                            <span>اضافة مستخدمين</span>
+                        </a>
+                    </li>
+}
+@if (User.IsInRole("Admin") || User.IsInRole("Parent")) {
+                    <li class="active">
                         <a asp-controller="Student" asp-action="Index">
                             <i class="material-icons">person</i>
                             <span>الطالب</span>
@@ -130,12 +139,7 @@
                             <span>بطاقة الطالب الاجتماعية</span>
                         </a>
                     </li>
-                    <li class="active">
-                        <a asp-controller="Account" asp-action="Register">
-                            <i class="material-icons">edit_square</i>
-                            <span>اضافة مستخدمين</span>
-                        </a>
-                    </li>
+}
                 </ul>
             </div>
 

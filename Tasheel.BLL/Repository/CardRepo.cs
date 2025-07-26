@@ -42,9 +42,16 @@ namespace Tasheel.BLL.Repository
         public async Task<IEnumerable<Card>> GetAllAsync(Expression<Func<Card, bool>> filter = null)
         {
             if (filter == null)
-                return await db.cards.Include(s => s.academicYear).ToListAsync();
+                return await db.cards
+                    .Include(s => s.academicYear)
+                    .Include(s => s.student)
+                    .ToListAsync();
             else
-                return await db.cards.Include(s => s.academicYear).Where(filter).ToListAsync();
+                return await db.cards
+                    .Include(s => s.academicYear)
+                    .Include(s => s.student)
+                    .Where(filter)
+                    .ToListAsync();
         }
 
         public async Task<IEnumerable<CardVM>> GetAsync()
@@ -62,7 +69,10 @@ namespace Tasheel.BLL.Repository
 
         public async Task<Card> GetByIdAsync(Expression<Func<Card, bool>> filter = null)
         {
-            var data = await db.cards.Where(filter).Include(s => s.academicYear).FirstOrDefaultAsync();
+            var data = await db.cards.Where(filter)
+                .Include(s => s.academicYear)
+                .Include(s => s.student)
+                .FirstOrDefaultAsync();
             return data;
         }
     }
