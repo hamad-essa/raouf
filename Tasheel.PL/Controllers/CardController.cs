@@ -56,15 +56,22 @@ namespace Tasheel.PL.Controllers
         public async Task<IActionResult> Delete(CardVM obj)
         {
             try
-
             {
-                var data = mapper.Map<Card>(obj);
+                var data = await card.GetByIdAsync(c =>
+                    c.Id == obj.Id &&
+                    c.StudentId == obj.StudentId &&
+                    c.AcademicYearId == obj.AcademicYearId);
+
+                if (data == null)
+                {
+                    TempData["Message"] = "Record not found";
+                    return View(obj);
+                }
 
                 await card.DeleteAsync(data);
                 return RedirectToAction("Index");
 
             }
-
             catch (Exception ex)
             {
                 TempData["Message"] = ex.Message;
